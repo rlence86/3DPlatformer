@@ -24,5 +24,15 @@ public class PlayerController : MonoBehaviour
         dir.y = rig.velocity.y;
 
         rig.velocity = dir;
+
+        SetFacing(xInput, zInput);
+    }
+
+    private void SetFacing(float xInput, float zInput) {
+        Vector3 facingDir = new Vector3(xInput, 0, zInput);
+
+        if (facingDir.magnitude > 0) {
+            transform.forward = facingDir;
+        }
     }
 }
