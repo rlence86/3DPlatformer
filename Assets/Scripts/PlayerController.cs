@@ -60,6 +60,9 @@ public class PlayerController : MonoBehaviour
     private void OnTriggerEnter(Collider other) {
         if (other.CompareTag("Enemy")) {
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        } else if (other.CompareTag("Coin")) {
+            // add score
+            Destroy(other.gameObject);
         }
     }
 }
