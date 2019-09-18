@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
@@ -54,5 +55,11 @@ public class PlayerController : MonoBehaviour
         Ray ray4 = new Ray(transform.position + new Vector3(-0.5f, 0, 0.5f), Vector3.down);
         
         return Physics.Raycast(ray1, 0.7f) || Physics.Raycast(ray2, 0.7f) || Physics.Raycast(ray3, 0.7f) || Physics.Raycast(ray4, 0.7f);
+    }
+
+    private void OnTriggerEnter(Collider other) {
+        if (other.CompareTag("Enemy")) {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        }
     }
 }
