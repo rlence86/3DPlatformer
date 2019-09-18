@@ -5,6 +5,7 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     public float moveSpeed;
+    public float jumpForce;
 
     private Rigidbody rig;
 
@@ -14,6 +15,10 @@ public class PlayerController : MonoBehaviour
 
     private void Update() {
         Move();
+
+        if (Input.GetButtonDown("Jump")) {
+            TryJump();
+        }
     }
 
     private void Move() {
@@ -33,6 +38,15 @@ public class PlayerController : MonoBehaviour
 
         if (facingDir.magnitude > 0) {
             transform.forward = facingDir;
+        }
+    }
+
+    private void TryJump() {
+
+        Ray ray = new Ray(transform.position, Vector3.down);
+
+        if(Physics.Raycast(ray, 0.7f)) {
+            rig.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
         }
     }
 }
