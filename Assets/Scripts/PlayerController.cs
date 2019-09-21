@@ -9,9 +9,11 @@ public class PlayerController : MonoBehaviour
     public float jumpForce;
 
     private Rigidbody rig;
+    private AudioSource audioSource;
 
     private void Awake() {
         rig = GetComponent<Rigidbody>();
+        audioSource = GetComponent<AudioSource>();
     }
 
     private void Update() {
@@ -63,6 +65,7 @@ public class PlayerController : MonoBehaviour
         } else if (other.CompareTag("Coin")) {
             // add score
             Destroy(other.gameObject);
+            audioSource.Play();
         }
     }
 }
