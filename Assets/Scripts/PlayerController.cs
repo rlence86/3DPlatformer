@@ -65,6 +65,8 @@ public class PlayerController : MonoBehaviour
             GameManager.instance.AddScore(1);
             Destroy(other.gameObject);
             audioSource.Play();
+        } else if (other.CompareTag("Goal")) {
+            GameManager.instance.LevelEnd();
         }
     }
 }
