@@ -10,7 +10,12 @@ public class GameManager : MonoBehaviour
     public static GameManager instance;
 
     private void Awake() {
-        instance = this;
+        if(instance != null && instance != this) {
+            Destroy(gameObject);
+        } else {
+            instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
     }
 
     public void AddScore (int scoreToGive) {
