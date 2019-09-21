@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
@@ -61,9 +60,9 @@ public class PlayerController : MonoBehaviour
 
     private void OnTriggerEnter(Collider other) {
         if (other.CompareTag("Enemy")) {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+            GameManager.instance.GameOver();
         } else if (other.CompareTag("Coin")) {
-            // add score
+            GameManager.instance.AddScore(1);
             Destroy(other.gameObject);
             audioSource.Play();
         }
